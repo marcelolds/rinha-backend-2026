@@ -1,7 +1,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 
+RUN apk add --no-cache curl
+
 WORKDIR /src
 COPY . .
+
+RUN if [ ! -f resources/references.json.gz ]; then \
+        mkdir -p resources && \
+        curl -fsSL https://raw.githubusercontent.com/zanfranceschi/rinha-de-backend-2026/main/resources/references.json.gz -o resources/references.json.gz; \
+    fi
 
 RUN dotnet publish src/Rinha.Indexer/Rinha.Indexer.csproj -c Release -o /out/indexer
 RUN dotnet publish src/Rinha.Api/Rinha.Api.csproj -c Release -o /out/api /p:UseAppHost=false
