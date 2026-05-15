@@ -1,0 +1,15 @@
+bin/
+obj/
+.vs/
+.vscode/
+data/
+resources/references.json.gz
+resources/references.json
+test/test-data.json
+test/results.json
+tools/
+.tmp-official/
+*.user
+*.suo
+.tmp.driveupload/
+.docker-local/

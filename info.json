@@ -1,0 +1,10 @@
+{
+  "participants": ["Marcelo Luiz"],
+  "social": [
+    "https://github.com/marcelolds",
+    "https://www.linkedin.com/in/marcelo-luiz-da-silva-0b57aa223/"
+  ],
+  "source-code-repo": "https://github.com/marcelolds/rinha-backend-2026",
+  "stack": [".net", "aspnet-core", "csharp", "nginx", "docker"],
+  "open_to_work": false
+}

@@ -1,0 +1,41 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api1
+      - api2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: "32MB"
+
+  api1:
+    build:
+      context: .
+    image: rinha-backend-2026-dotnet:local
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      INDEX_PATH: /app/data/references.bin
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "159MB"
+
+  api2:
+    image: rinha-backend-2026-dotnet:local
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      INDEX_PATH: /app/data/references.bin
+    depends_on:
+      - api1
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "159MB"
